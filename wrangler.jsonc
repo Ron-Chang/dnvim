@@ -1,0 +1,7 @@
+{
+  // Cloudflare Workers Builds deploys worker.js on push to main
+  "name": "dnvim",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-27",
+  "routes": [{ "pattern": "nvim.ronchang.io", "custom_domain": true }]
+}

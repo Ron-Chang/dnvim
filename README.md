@@ -38,4 +38,4 @@ Inspect before running: `curl -sL nvim.ronchang.io | less`, `curl -sL nvim.ronch
 - shada and sessions are discarded on exit
 - Clipboard uses OSC 52; iTerm2 needs Settings → General → Selection → Applications in terminal may access clipboard
 - Update the image: `docker pull <NVIM_IMAGE>`
-- `worker.js` serves this repo at `nvim.ronchang.io` (Cloudflare Worker)
+- `worker.js` serves this repo at `nvim.ronchang.io`; Cloudflare Workers Builds deploys it on push (`wrangler.jsonc`)
