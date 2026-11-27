@@ -29,13 +29,14 @@ Inspect before running: `curl -sL nvim.ronchang.io | less`, `curl -sL nvim.ronch
 |---|---|---|
 | `NVIM_IMAGE` | `ronhsienchang/dnvim:latest` | Image to run |
 | `NVIM_THEME` | `tokyonight` | `gruvbox`, `gruvbox-material`, `monokai`, `monokai-pro`, `nord`, `onedark`, `tokyonight` |
-| `DNVIM_UNDO` | `1` | Share undo history with this host's nvim (`~/.local/state/nvim/undo`); `0` keeps nothing on the host |
+| `DNVIM_STATE` | `1` | Share undo and shada (recent files, registers, command history) with this host's nvim (`~/.local/state/nvim`); `0` keeps nothing on the host |
 
 ## Notes
 
 - Only the target directory is mounted; files outside it are not reachable
-- Undo files contain edited content; use `DNVIM_UNDO=0` on machines you do not own
-- shada and sessions are discarded on exit
+- Undo files and shada registers contain edited content; use `DNVIM_STATE=0` on machines you do not own
+- Recent files outside the mounted directory are listed by the host nvim only
+- Sessions are discarded on exit
 - Clipboard uses OSC 52; iTerm2 needs Settings → General → Selection → Applications in terminal may access clipboard
 - Update the image: `docker pull <NVIM_IMAGE>`
 - `worker.js` serves this repo at `nvim.ronchang.io`; Cloudflare Workers Builds deploys it on push (`wrangler.jsonc`)

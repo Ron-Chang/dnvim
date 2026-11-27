@@ -6,7 +6,7 @@
 #
 # Env:   NVIM_IMAGE    image to run (default below)
 #        NVIM_THEME    colorscheme: gruvbox, gruvbox-material, monokai, monokai-pro, nord, onedark, tokyonight
-#        DNVIM_UNDO=0  do not share undo history with this host's nvim (~/.local/state/nvim/undo)
+#        DNVIM_STATE=0 do not share undo and shada (recent files, registers, history) with this host's nvim
 set -euo pipefail
 
 IMAGE="${NVIM_IMAGE:-ronhsienchang/dnvim:latest}"
@@ -37,10 +37,10 @@ opts=()
 if [[ "$(uname -s)" != "Darwin" ]]; then
     opts+=(--user "$(id -u):$(id -g)")
 fi
-if [[ "${DNVIM_UNDO:-1}" == "1" ]]; then
-    undo_dir="${XDG_STATE_HOME:-$HOME/.local/state}/nvim/undo"
-    mkdir -p "$undo_dir"
-    opts+=(-v "$undo_dir:/opt/nvim/state/nvim/undo")
+if [[ "${DNVIM_STATE:-1}" == "1" ]]; then
+    state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/nvim"
+    mkdir -p "$state_dir/undo" "$state_dir/shada"
+    opts+=(-v "$state_dir/undo:/opt/nvim/state/nvim/undo" -v "$state_dir/shada:/opt/nvim/state/nvim/shada")
 fi
 
 # stdin may be the script itself (curl | bash): attach the terminal explicitly
