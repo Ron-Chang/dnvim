@@ -5,13 +5,23 @@ Only needs Docker on the host.
 
 ## Usage
 
+One-off:
+
 ```bash
-bash <(curl -fsSL https://nvim.ronchang.io)            # current directory, dashboard
-bash <(curl -fsSL https://nvim.ronchang.io) WORKPATH   # directory: dashboard there; file: open it
-curl -fsSL https://nvim.ronchang.io | bash -s -- WORKPATH
+curl -sL nvim.ronchang.io | bash                     # current directory, dashboard
+curl -sL nvim.ronchang.io | bash -s -- WORKPATH      # directory: dashboard there; file: open it
 ```
 
-Inspect before running: `curl -fsSL https://nvim.ronchang.io | less`
+Install as a command (`~/.local/bin/dnvim`, override with `DNVIM_BIN`); rerun to update:
+
+```bash
+curl -sL nvim.ronchang.io/install | sh
+dnvim WORKPATH
+```
+
+Uninstall: `rm ~/.local/bin/dnvim`
+
+Inspect before running: `curl -sL nvim.ronchang.io | less`, `curl -sL nvim.ronchang.io/install | less`
 
 ## Environment
 
